@@ -338,6 +338,9 @@ body.notion {
   background-color: #191919;
   color: #e3e5e5;
   padding-top: 72px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Error page */
@@ -416,6 +419,11 @@ body.error-page {
   max-width: 920px;
   margin: 0 auto 96px;
   padding: 32px 32px;
+}
+
+body.notion .notion-container {
+  flex: 1 0 auto;
+  width: 100%;
 }
 
 .notion-page-title {
