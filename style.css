@@ -523,6 +523,14 @@ body.notion .notion-container {
   text-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
 }
 
+.robot-nickname {
+  font-style: normal;
+  font-weight: 500;
+  color: rgba(211, 219, 235, 0.9);
+  margin-left: 6px;
+  font-size: 0.9em;
+}
+
 .robot-summary {
   font-size: 1.05rem;
   line-height: 1.7;
