@@ -30,6 +30,23 @@
   // times across pages because of the __gtagInserted guard.
   insertGtag();
 
+  // Inject Google Fonts link once so individual pages don't need to include it.
+  const insertGoogleFonts = () => {
+    try {
+      if (window.__googleFontsInserted) return;
+      window.__googleFontsInserted = true;
+
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = 'https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Roboto:wght@300;400;500;700&display=swap';
+      document.head.appendChild(link);
+    } catch (e) {
+      console.error('Failed to insert Google Fonts', e);
+    }
+  };
+
+  insertGoogleFonts();
+
   const loadInclude = async (placeholder) => {
     const path = placeholder.getAttribute(INCLUDE_ATTRIBUTE);
 
