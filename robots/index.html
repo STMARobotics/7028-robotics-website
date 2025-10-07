@@ -559,25 +559,26 @@
             </tbody>
           </table>
         </div>
-        <div class="event-block">
-          <h3>Minnesota State Championship <span>MSHSL</span></h3>
-          <table class="event-table">
-            <tbody>
-              <tr>
-                <th>Qualifications</th>
-                <td>6-3 record &mdash; Rank 3/36</td>
-              </tr>
-              <tr>
-                <th>Playoffs</th>
-                <td>Captain of alliance #3 (7028, 4607, 1816) &mdash; 0-2</td>
-              </tr>
-              <tr>
-                <th>Awards</th>
-                <td>-</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+      </div>
+
+      <div class="event-block">
+        <h3>Minnesota State Championship <span>MSHSL</span></h3>
+        <table class="event-table">
+          <tbody>
+            <tr>
+              <th>Qualifications</th>
+              <td>6-3 record &mdash; Rank 3/36</td>
+            </tr>
+            <tr>
+              <th>Playoffs</th>
+              <td>Captain of alliance #3 (7028, 4607, 1816) &mdash; 0-2</td>
+            </tr>
+            <tr>
+              <th>Awards</th>
+              <td>-</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </section>
 
@@ -651,5 +652,33 @@
     </section>
   </main>
   <div data-include="/partials/footer.html"></div>
+
+    <script>
+      // Reveal robot cards and inner event blocks as they scroll into view.
+      (function(){
+        if (!('IntersectionObserver' in window)) {
+          document.documentElement.classList.add('no-js');
+          return;
+        }
+
+        const cardObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const card = entry.target;
+              card.classList.add('is-visible');
+              // Stagger reveal of child event-blocks for a cohesive animation
+              const children = Array.from(card.querySelectorAll('.event-block'));
+              children.forEach((child, idx) => {
+                setTimeout(() => child.classList.add('is-visible'), 120 + idx * 100);
+              });
+              cardObserver.unobserve(card);
+            }
+          });
+        }, { threshold: 0.12 });
+
+        document.querySelectorAll('.robot-card').forEach(card => cardObserver.observe(card));
+      })();
+    </script>
+
 </body>
 </html>
