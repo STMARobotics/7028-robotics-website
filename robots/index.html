@@ -678,6 +678,121 @@
 
         document.querySelectorAll('.robot-card').forEach(card => cardObserver.observe(card));
       })();
+
+      // Responsive transform: convert .match-table into accordion on small viewports
+      (function(){
+  const MOBILE_MAX = 830;
+        const tables = [];
+
+        function buildAccordion(table){
+          const container = document.createElement('div');
+          container.className = 'table-accordion';
+
+          const rows = Array.from(table.querySelectorAll('tbody > tr'));
+
+          if (table.classList.contains('match-table')) {
+            // Create one accordion item per match (one <tr> per match)
+            rows.forEach((r, idx) => {
+              const cells = Array.from(r.querySelectorAll('td'));
+              const matchNum = cells[0]?.textContent?.trim() || `Match ${idx+1}`;
+              const curieAlliance = cells[1]?.innerHTML?.trim() || '';
+              const opposingAlliance = cells[2]?.innerHTML?.trim() || '';
+              const curieScore = cells[3]?.textContent?.trim() || '';
+              const oppScore = cells[4]?.textContent?.trim() || '';
+
+              const details = document.createElement('details');
+              details.className = 'accordion-item';
+              // Open by default so mobile users don't need an extra tap
+              details.open = true;
+              const summary = document.createElement('summary');
+              summary.textContent = `${matchNum} — ${curieScore || '?'} – ${oppScore || '?'} `;
+
+              const content = document.createElement('div');
+              content.className = 'accordion-content';
+
+              // Add meta rows
+              const addMeta = (label, value) => {
+                const row = document.createElement('div');
+                row.className = 'meta-row';
+                const lab = document.createElement('div'); lab.className = 'label'; lab.textContent = label;
+                const val = document.createElement('div'); val.className = 'value'; val.innerHTML = value;
+                row.appendChild(lab);
+                row.appendChild(val);
+                content.appendChild(row);
+              };
+
+              addMeta('Match', matchNum);
+              addMeta('Curie Alliance', curieAlliance);
+              addMeta('Opposing Alliance', opposingAlliance);
+              addMeta('Curie Score', curieScore);
+              addMeta('Opposing Score', oppScore);
+
+              details.appendChild(summary);
+              details.appendChild(content);
+              container.appendChild(details);
+            });
+          } else {
+            // Fallback: group rows in blocks (default 3) for regular event tables
+            for (let i = 0; i < rows.length; i += 3) {
+              const chunk = rows.slice(i, i+3);
+              const summaryText = chunk[0]?.querySelector('th')?.textContent || `Item ${i/3+1}`;
+              const details = document.createElement('details');
+              details.className = 'accordion-item';
+              // Open by default for easier reading on mobile
+              details.open = true;
+              const summary = document.createElement('summary');
+              summary.textContent = summaryText;
+              const content = document.createElement('div');
+              content.className = 'accordion-content';
+
+              chunk.forEach(r => {
+                const label = r.querySelector('th')?.textContent || '';
+                const value = r.querySelector('td')?.innerHTML || '';
+                const row = document.createElement('div');
+                row.className = 'meta-row';
+                const lab = document.createElement('div'); lab.className = 'label'; lab.textContent = label;
+                const val = document.createElement('div'); val.className = 'value'; val.innerHTML = value;
+                row.appendChild(lab);
+                row.appendChild(val);
+                content.appendChild(row);
+              });
+
+              details.appendChild(summary);
+              details.appendChild(content);
+              container.appendChild(details);
+            }
+          }
+
+          table.parentNode.insertBefore(container, table.nextSibling);
+          table.classList.add('mobile-hidden');
+          return container;
+        }
+
+        function teardownAccordion(container, table){
+          if (container && container.parentNode) container.parentNode.removeChild(container);
+          table.classList.remove('mobile-hidden');
+        }
+
+        function refresh(){
+          const small = window.innerWidth <= MOBILE_MAX;
+          document.querySelectorAll('.match-table').forEach(table => {
+            const existing = table._accordion;
+            if (small && !existing) {
+              table._accordion = buildAccordion(table);
+            } else if (!small && existing) {
+              teardownAccordion(existing, table);
+              table._accordion = null;
+            }
+          });
+        }
+
+        window.addEventListener('resize', debounce(refresh, 180));
+        // run once
+        refresh();
+
+        // simple debounce
+        function debounce(fn, t){ let id; return (...a)=>{ clearTimeout(id); id = setTimeout(()=>fn(...a), t); }; }
+      })();
     </script>
 
 </body>

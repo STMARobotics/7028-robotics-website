@@ -812,6 +812,69 @@ html.no-js .event-grid .event-block { opacity: 1; transform: none; }
   font-variant-numeric: tabular-nums;
 }
 
+/* Mobile-friendly accordion for match tables */
+/* Hide JS-generated accordion by default on desktop */
+.table-accordion { display: none; }
+
+@media (max-width: 830px) {
+  /* Show the accordion container and hide the original table when mobile transformation is active */
+  .table-accordion { display: block; }
+
+  /* Only hide the original table when the mobile accordion is active (within the collapse breakpoint) */
+  .match-table.mobile-hidden { display: none; }
+
+  .table-accordion .accordion-item {
+    background: rgba(14,18,26,0.72);
+    border: 1px solid rgba(143,188,255,0.08);
+    border-radius: 12px;
+    margin-bottom: 12px;
+    overflow: hidden;
+  }
+
+  .table-accordion summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 12px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    font-weight: 600;
+    color: #e6ecff;
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.00));
+  }
+
+  .table-accordion summary::-webkit-details-marker { display: none; }
+
+  .table-accordion .accordion-content {
+    padding: 12px 16px 18px 16px;
+    color: #d7dbe7;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    border-top: 1px solid rgba(255,255,255,0.03);
+  }
+
+  /* Use a 2-column grid for meta rows so the right-hand values align vertically
+     The left column is fixed width so multi-line values align under the same start point */
+  .table-accordion .meta-row {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 12px;
+    align-items: start;
+    margin-bottom: 10px;
+  }
+
+  .table-accordion .meta-row .label {
+    font-weight: 700;
+    color: #bcd3ff;
+  }
+
+  .table-accordion .meta-row .value {
+    /* ensure values wrap within the available space */
+    overflow-wrap: anywhere;
+  }
+}
+
 .event-block + .event-block {
   margin-top: 0;
 }
