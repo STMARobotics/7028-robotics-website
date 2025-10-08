@@ -1,10 +1,16 @@
-<nav class="top-nav">
-  <div class="nav-links">
-    <a class="nav-link" href="/">HOME</a>
-    <a class="nav-link" href="/sponsors/">SPONSORS</a>
-    <a class="nav-link" href="/robots/">ROBOTS</a>
-    <a class="nav-link" href="/handbook/">HANDBOOK</a>
-    <a class="nav-link" href="/join/">JOIN</a>
-    <a class="nav-link" href="/contact/">CONTACT</a>
+<nav class="top-nav" aria-label="Primary">
+  <div class="nav-inner">
+    <button class="nav-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Open navigation">
+      <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M3 6h18v2H3zM3 11h18v2H3zM3 16h18v2H3z"></path></svg>
+    </button>
+
+  <div id="primary-navigation" class="nav-links" data-visible="false">
+      <a class="nav-link" href="/">HOME</a>
+      <a class="nav-link" href="/sponsors/">SPONSORS</a>
+      <a class="nav-link" href="/robots/">ROBOTS</a>
+      <a class="nav-link" href="/handbook/">HANDBOOK</a>
+      <a class="nav-link" href="/join/">JOIN</a>
+      <a class="nav-link" href="/contact/">CONTACT</a>
+    </div>
   </div>
 </nav>

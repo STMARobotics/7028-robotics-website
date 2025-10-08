@@ -64,6 +64,29 @@ a:hover {
   align-items: center;
 }
 
+/* Navigation inner wrapper to contain toggle + links */
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-toggle {
+  display: none;
+  background: transparent;
+  border: 0;
+  color: inherit;
+  padding: 8px;
+  margin-right: 12px;
+  cursor: pointer;
+}
+
+/* Ensure toggle is ordered after links so it appears on the right when shown */
+.nav-toggle { order: 2; }
+.nav-links { order: 1; }
+
+.nav-toggle svg { display: block; }
+
 .nav-links a {
   font-size: 0.95rem;
   font-weight: 500;
@@ -362,6 +385,47 @@ h3 {
 @media (max-width: 768px) {
   .hero {
     padding-top: 64px;
+  }
+
+  /* Mobile nav: hide the full link list behind a toggle */
+  .nav-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .nav-inner {
+    justify-content: flex-end;
+    padding: 8px 16px;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 64px;
+    left: 0;
+    right: 0;
+    background: rgba(18,18,18,0.96);
+    flex-direction: column;
+    gap: 0;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 260ms ease, opacity 200ms ease;
+    opacity: 0;
+    padding: 0 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+
+  .nav-links[data-visible="true"] {
+    max-height: 420px; /* enough to show the links */
+    opacity: 1;
+    padding: 12px 16px 18px 16px;
+  }
+
+  .nav-links a {
+    display: block;
+    padding: 12px 6px;
+    text-align: center;
+    border-top: 1px solid rgba(255,255,255,0.02);
   }
 
   .logo-container {

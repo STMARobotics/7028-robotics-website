@@ -98,3 +98,40 @@
 
   Promise.all(Array.from(placeholders, loadInclude)).finally(notifyLoaded);
 })();
+
+// Initialize mobile nav toggle once includes are loaded
+document.addEventListener('includesLoaded', () => {
+  try {
+    const toggle = document.querySelector('.nav-toggle');
+    const nav = document.getElementById('primary-navigation');
+
+    if (!toggle || !nav) return;
+
+    const setExpanded = (expanded) => {
+      toggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+      nav.setAttribute('data-visible', expanded ? 'true' : 'false');
+      toggle.setAttribute('aria-label', expanded ? 'Close navigation' : 'Open navigation');
+    };
+
+    toggle.addEventListener('click', (e) => {
+      const expanded = toggle.getAttribute('aria-expanded') === 'true';
+      setExpanded(!expanded);
+    });
+
+    // Close on escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        setExpanded(false);
+      }
+    });
+
+    // Close when clicking outside the nav on small screens
+    document.addEventListener('click', (e) => {
+      if (!nav.contains(e.target) && !toggle.contains(e.target)) {
+        setExpanded(false);
+      }
+    });
+  } catch (err) {
+    console.error('Mobile nav init failed', err);
+  }
+});
