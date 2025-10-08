@@ -24,6 +24,7 @@ html, body {
 /* Headings prefer Allstar, fall back to Oswald then Roboto */
 h1, h2, h3, .notion-page-title, .hero h1 {
   font-family: 'Allstar', 'Oswald', 'Roboto', sans-serif;
+  text-transform: uppercase;
 }
 
 /* Smaller headings / emphasis use Oswald */
@@ -171,7 +172,6 @@ a:hover {
   font-size: clamp(2rem, 4.5vw, 3rem);
   font-weight: 700;
   letter-spacing: 0.06em;
-  text-transform: none;
   margin-bottom: 14px;
   color: #f5f8ff;
 }
