@@ -434,31 +434,43 @@ h3 {
 
   .nav-links {
     position: absolute;
-    top: 64px;
+    top: 100%;
     left: 0;
     right: 0;
     background: rgba(18,18,18,0.96);
+    height: auto;
     flex-direction: column;
     gap: 0;
     overflow: hidden;
     max-height: 0;
     transition: max-height 260ms ease, opacity 200ms ease;
     opacity: 0;
-    padding: 0 16px;
+    padding: 0;
     border-bottom: 1px solid rgba(255,255,255,0.04);
   }
 
   .nav-links[data-visible="true"] {
+    display: flex;
     max-height: 420px; /* enough to show the links */
     opacity: 1;
-    padding: 12px 16px 18px 16px;
+    padding: 12px 0;
   }
 
-  .nav-links a {
-    display: block;
-    padding: 12px 6px;
+  .nav-links a.nav-link {
+    height: auto;
+    padding: 12px 16px;
     text-align: center;
     border-top: 1px solid rgba(255,255,255,0.02);
+    justify-content: center;
+  }
+
+  .nav-links a.nav-link::after {
+    display: none;
+  }
+  
+  .nav-links a.nav-link.donate-btn {
+    margin: 8px 16px;
+    border: none;
   }
 
   .logo-container {
