@@ -451,7 +451,7 @@ h3 {
 
   .nav-links[data-visible="true"] {
     display: flex;
-    max-height: 420px; /* enough to show the links */
+    max-height: 500px; /* enough to show the links */
     opacity: 1;
     padding: 12px 0;
   }
