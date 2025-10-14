@@ -44,8 +44,7 @@ a:hover {
 }
 
 .notion-container a,
-.notion-card a,
-.error-card a {
+.notion-card a {
   color: #8fbcff;
   text-decoration: underline;
   text-decoration-color: rgba(143, 188, 255, 0.4);
@@ -54,8 +53,7 @@ a:hover {
 }
 
 .notion-container a:hover,
-.notion-card a:hover,
-.error-card a:hover {
+.notion-card a:hover {
   color: #b3d1ff;
   text-decoration-color: rgba(143, 188, 255, 0.8);
 }
@@ -529,16 +527,61 @@ h3 {
     width: clamp(40px, 12vw, 56px);
     height: clamp(40px, 12vw, 56px);
   }
-}
 
-@media (max-width: 768px) {
+  /* Footer styles */
   .footer-icons {
     width: 100%;
   }
   .site-footer {
     padding: 48px 4px;
   }
+
+  /* Content page styles */
+  .nav-links {
+    gap: 16px;
+    padding: 16px 20px;
+    font-size: 0.9rem;
+  }
+
+  body.notion {
+    padding-top: 64px;
+  }
+
+  .notion-container {
+    margin: 0 auto 24px;
+    padding: 24px 20px;
+  }
+
+  .notion-page-title {
+    font-size: 2rem;
+  }
+
+  .notion-card {
+    padding: 20px;
+  }
+
+  .sponsor-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .robot-overview {
+    text-align: left;
+    align-items: flex-start;
+  }
+
+  .robot-title {
+    font-size: 1.9rem;
+  }
+
+  .robot-season {
+    font-size: 0.85rem;
+  }
+
+  .robot-meta {
+    grid-template-columns: 1fr;
+  }
 }
+
 
 .home:not(.animations-ready) .hero .background {
   opacity: 0;
@@ -559,73 +602,6 @@ body.notion {
   display: flex;
   flex-direction: column;
 }
-
-/* Error page */
-body.error-page {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  background: radial-gradient(circle at top, rgba(143, 188, 255, 0.16), rgba(7, 10, 18, 0.9) 58%),
-    linear-gradient(180deg, #070a12 0%, #05070c 65%, #04060a 100%);
-  color: #e6ebff;
-  padding-top: 72px;
-}
-
-.error-page .top-nav {
-  background: rgba(17, 20, 28, 0.9);
-  border-bottom: 1px solid rgba(143, 188, 255, 0.12);
-}
-
-.error-container {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 96px 24px 120px;
-}
-
-.error-card {
-  max-width: 520px;
-  width: 100%;
-  padding: 48px 44px;
-  text-align: center;
-  background: rgba(11, 15, 26, 0.86);
-  border: 1px solid rgba(143, 188, 255, 0.2);
-  border-radius: 20px;
-  box-shadow: 0 32px 64px rgba(4, 7, 14, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.06);
-  display: grid;
-  gap: 18px;
-}
-
-.error-eyebrow {
-  font-size: 0.85rem;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: rgba(143, 188, 255, 0.8);
-  margin: 0;
-}
-
-.error-card h1 {
-  font-size: clamp(2.4rem, 4vw, 3.2rem);
-  font-weight: 650;
-  margin: 0;
-  color: #f5f8ff;
-  text-shadow: 0 18px 36px rgba(7, 12, 22, 0.7);
-}
-
-.error-message {
-  font-size: 1.05rem;
-  line-height: 1.7;
-  color: rgba(214, 225, 255, 0.82);
-  margin: 0;
-}
-
-  @media (max-width: 640px) {
-    .error-card {
-      padding: 40px 28px;
-      gap: 16px;
-    }
-  }
 
 .notion .top-nav {
   background: rgba(24, 25, 26, 0.85);
@@ -1117,51 +1093,5 @@ html.no-js .event-grid .event-block { opacity: 1; transform: none; }
 
   .robot-summary {
     max-width: 60ch;
-  }
-}
-
-@media (max-width: 768px) {
-  .nav-links {
-    gap: 16px;
-    padding: 16px 20px;
-    font-size: 0.9rem;
-  }
-
-  body.notion {
-    padding-top: 64px;
-  }
-
-  .notion-container {
-    margin: 0 auto 24px;
-    padding: 24px 20px;
-  }
-
-  .notion-page-title {
-    font-size: 2rem;
-  }
-
-  .notion-card {
-    padding: 20px;
-  }
-
-  .sponsor-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .robot-overview {
-    text-align: left;
-    align-items: flex-start;
-  }
-
-  .robot-title {
-    font-size: 1.9rem;
-  }
-
-  .robot-season {
-    font-size: 0.85rem;
-  }
-
-  .robot-meta {
-    grid-template-columns: 1fr;
   }
 }
