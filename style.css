@@ -10,6 +10,8 @@ html, body {
   font-family: 'Roboto', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
   background-color: #000;
   color: #f5f5f5;
+  min-width: 360px;
+  overflow-x: auto;
 }
 
 /* Register local Allstar display font used for headings */
@@ -323,7 +325,8 @@ h3 {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  text-align: center;
   gap: 32px;
 }
 
@@ -331,6 +334,7 @@ h3 {
   display: grid;
   gap: 8px;
   color: rgba(219, 228, 255, 0.92);
+  justify-items: center;
 }
 
 .footer-title {
@@ -528,17 +532,11 @@ h3 {
 }
 
 @media (max-width: 768px) {
-  .footer-inner {
-    justify-content: center;
-    text-align: center;
-  }
-
-  .footer-meta {
-    justify-items: center;
-  }
-
   .footer-icons {
     width: 100%;
+  }
+  .site-footer {
+    padding: 48px 4px;
   }
 }
 
@@ -1134,7 +1132,7 @@ html.no-js .event-grid .event-block { opacity: 1; transform: none; }
   }
 
   .notion-container {
-    margin: 0 auto 64px;
+    margin: 0 auto 24px;
     padding: 24px 20px;
   }
 
