@@ -41,6 +41,35 @@ a:hover {
   text-decoration: none;
 }
 
+.notion-container a,
+.notion-card a,
+.error-card a {
+  color: #8fbcff;
+  text-decoration: underline;
+  text-decoration-color: rgba(143, 188, 255, 0.4);
+  text-underline-offset: 2px;
+  transition: color 0.2s ease, text-decoration-color 0.2s ease;
+}
+
+.notion-container a:hover,
+.notion-card a:hover,
+.error-card a:hover {
+  color: #b3d1ff;
+  text-decoration-color: rgba(143, 188, 255, 0.8);
+}
+
+.notion-container a.notion-pill,
+.notion-card a.notion-pill {
+  color: inherit;
+  text-decoration: none;
+}
+
+.notion-container a.notion-pill:hover,
+.notion-card a.notion-pill:hover {
+  color: inherit;
+  text-decoration: none;
+}
+
 .home {
   background-color: #000;
   overflow: hidden;
@@ -1056,7 +1085,7 @@ html.no-js .event-grid .event-block { opacity: 1; transform: none; }
 .notion-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;
+  margin: 10px 0px;
 }
 
 .notion-pill {
