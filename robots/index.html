@@ -12,10 +12,23 @@
 <body class="notion">
   <div data-include="/partials/header.html"></div>
 
+  <!-- Floating Year Navigation -->
+  <nav class="year-nav" id="yearNav">
+    <ul class="year-nav-list">
+      <li><a href="#2025" class="year-nav-link" data-year="2025">2025</a></li>
+      <li><a href="#2024" class="year-nav-link" data-year="2024">2024</a></li>
+      <li><a href="#2023" class="year-nav-link" data-year="2023">2023</a></li>
+      <li><a href="#2022" class="year-nav-link" data-year="2022">2022</a></li>
+      <li><a href="#2020" class="year-nav-link" data-year="2020">2020</a></li>
+      <li><a href="#2019" class="year-nav-link" data-year="2019">2019</a></li>
+      <li><a href="#2018" class="year-nav-link" data-year="2018">2018</a></li>
+    </ul>
+  </nav>
+
   <main class="notion-container">
     <h1 class="notion-page-title">Robots</h1>
 
-    <section class="notion-card robot-card">
+    <section class="notion-card robot-card" id="2025">
       <header class="robot-header">
         <figure class="robot-media">
           <img class="robot-photo" src="/images/robot-torrent.JPG" alt="Torrent robot" loading="lazy">
@@ -128,7 +141,7 @@
       </div>
     </section>
 
-    <section class="notion-card robot-card">
+    <section class="notion-card robot-card" id="2024">
       <header class="robot-header">
         <figure class="robot-media">
           <img class="robot-photo" src="/images/robot-tempo.JPG" alt="Tempo robot" loading="lazy">
@@ -258,7 +271,7 @@
       </div>
     </section>
 
-    <section class="notion-card robot-card">
+    <section class="notion-card robot-card" id="2023">
       <header class="robot-header">
         <figure class="robot-media">
           <img class="robot-photo" src="/images/robot-orion.JPG" alt="Orion robot" loading="lazy">
@@ -348,7 +361,7 @@
       </div>
     </section>
 
-    <section class="notion-card robot-card">
+    <section class="notion-card robot-card" id="2022">
       <header class="robot-header">
         <figure class="robot-media">
           <img class="robot-photo" src="/images/robot-onyx.JPG" alt="Onyx robot" loading="lazy">
@@ -438,7 +451,7 @@
       </div>
     </section>
 
-    <section class="notion-card robot-card">
+    <section class="notion-card robot-card" id="2020">
       <header class="robot-header">
         <figure class="robot-media">
           <img class="robot-photo" src="/images/robot-wilson.jpg" alt="Wilson robot" loading="lazy">
@@ -488,7 +501,7 @@
       </div>
     </section>
 
-    <section class="notion-card robot-card">
+    <section class="notion-card robot-card" id="2019">
       <header class="robot-header">
         <figure class="robot-media">
           <img class="robot-photo" src="/images/robot-ozzy.jpg" alt="Ozy-Mōld~iăs Philiăs (Ozzy) robot" loading="lazy">
@@ -579,7 +592,7 @@
       </div>
     </section>
 
-    <section class="notion-card robot-card">
+    <section class="notion-card robot-card" id="2018">
       <header class="robot-header">
         <figure class="robot-media">
           <img class="robot-photo" src="/images/robot-phyllis.JPG" alt="Phylis robot" loading="lazy">
@@ -789,6 +802,150 @@
 
         // simple debounce
         function debounce(fn, t){ let id; return (...a)=>{ clearTimeout(id); id = setTimeout(()=>fn(...a), t); }; }
+      })();
+
+      // Year Navigation Active State Handler
+      (function() {
+        const yearNav = document.getElementById('yearNav');
+        const yearLinks = document.querySelectorAll('.year-nav-link');
+        const robotSections = document.querySelectorAll('.robot-card[id]');
+
+        if (!yearNav || yearLinks.length === 0 || robotSections.length === 0) return;
+
+        // Simple debounce function for scroll events
+        function debounce(fn, t){ let id; return (...a)=>{ clearTimeout(id); id = setTimeout(()=>fn(...a), t); }; }
+
+        // Flag to prevent scroll updates during click navigation
+        let isNavigating = false;
+        let navigationTimeout = null;
+
+        // Detect if device supports touch
+        const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+        function updateActiveYear() {
+          // Skip updates if user is currently navigating via click
+          if (isNavigating) return;
+          
+          const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+          const windowHeight = window.innerHeight;
+          
+          let currentSection = null;
+          
+          // Find which section is currently in view
+          robotSections.forEach(section => {
+            const rect = section.getBoundingClientRect();
+            const sectionTop = scrollTop + rect.top;
+            
+            // Check if section is in the upper half of the viewport
+            if (sectionTop <= scrollTop + windowHeight * 0.4) {
+              currentSection = section;
+            }
+          });
+
+          // Update active link and address bar
+          let newActiveSection = null;
+          yearLinks.forEach(link => {
+            link.classList.remove('active');
+            if (currentSection) {
+              const sectionId = currentSection.getAttribute('id');
+              const linkHref = link.getAttribute('href').substring(1); // remove #
+              if (sectionId === linkHref) {
+                link.classList.add('active');
+                newActiveSection = sectionId;
+              }
+            }
+          });
+
+          // Update address bar if active section changed
+          if (newActiveSection) {
+            const currentHash = window.location.hash.substring(1); // remove #
+            if (currentHash !== newActiveSection) {
+              history.replaceState(null, null, '#' + newActiveSection);
+            }
+          }
+        }
+
+        // Smooth scrolling for navigation links
+        yearLinks.forEach(link => {
+          // Add both click and touchstart for better touch device support
+          const handleNavigation = function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const targetId = this.getAttribute('href').substring(1);
+            const targetElement = document.getElementById(targetId);
+            
+            if (targetElement) {
+              // Set navigation flag and manually update active state
+              isNavigating = true;
+              
+              // Clear any existing timeouts
+              if (navigationTimeout) {
+                clearTimeout(navigationTimeout);
+                navigationTimeout = null;
+              }
+              
+              // Manually set the clicked link as active
+              yearLinks.forEach(l => l.classList.remove('active'));
+              this.classList.add('active');
+              
+              const offset = 100; // Offset from top
+              const targetTop = targetElement.offsetTop - offset;
+              
+              // Update the URL hash
+              history.pushState(null, null, '#' + targetId);
+              
+              window.scrollTo({
+                top: targetTop,
+                behavior: 'smooth'
+              });
+              
+              // Re-enable scroll updates after smooth scroll completes
+              // Use longer timeout for touch devices due to momentum scrolling
+              const timeout = 800;
+              navigationTimeout = setTimeout(() => {
+                isNavigating = false;
+                updateActiveYear(); // Update based on final scroll position
+                navigationTimeout = null;
+              }, timeout);
+            }
+          };
+          
+          // Use touchstart for touch devices for more responsive feel
+          if (isTouchDevice) {
+            link.addEventListener('touchstart', handleNavigation, { passive: false });
+          } else {
+            link.addEventListener('click', handleNavigation);
+          }
+        });
+
+        // Update active state on scroll
+        const throttledUpdate = debounce(updateActiveYear, 100);
+        window.addEventListener('scroll', throttledUpdate);
+        
+        // Add scroll end detection for better touch device support
+        let scrollEndTimeout;
+        const handleScrollEnd = () => {
+          // If we're navigating via click, reset the flag when scrolling actually ends
+          if (isNavigating) {
+            clearTimeout(scrollEndTimeout);
+            scrollEndTimeout = setTimeout(() => {
+              if (isNavigating) {
+                isNavigating = false;
+                updateActiveYear();
+                if (navigationTimeout) {
+                  clearTimeout(navigationTimeout);
+                  navigationTimeout = null;
+                }
+              }
+            }, 150);
+          }
+        };
+        
+        window.addEventListener('scroll', handleScrollEnd);
+        
+        // Initial update
+        updateActiveYear();
       })();
     </script>
 

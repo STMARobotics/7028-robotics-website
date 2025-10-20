@@ -1096,3 +1096,61 @@ html.no-js .event-grid .event-block { opacity: 1; transform: none; }
     max-width: 60ch;
   }
 }
+
+/* Year Navigation */
+.year-nav {
+  position: fixed;
+  left: calc(50% - 460px - 100px); /* Position to the left of the main container */
+  top: 346px;
+  transform: translateY(-50%);
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  padding: 16px 0;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.year-nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.year-nav-link {
+  display: block;
+  padding: 12px 20px;
+  color: #f5f5f5;
+  text-decoration: none;
+  font-family: 'Allstar', 'Oswald', 'Roboto', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: all 0.2s ease;
+  border-left: 3px solid transparent;
+  position: relative;
+}
+
+.year-nav-link:hover {
+  color: #8fbcff;
+  border-left-color: #8fbcff;
+  background: rgba(143, 188, 255, 0.1);
+}
+
+.year-nav-link.active {
+  color: #8fbcff;
+  border-left-color: #8fbcff;
+  background: rgba(143, 188, 255, 0.15);
+}
+
+/* Hide navigation on smaller screens */
+@media (max-width: 1200px) {
+  .year-nav {
+    display: none;
+  }
+}
