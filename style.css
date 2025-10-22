@@ -720,6 +720,37 @@ html.no-js .event-grid .event-block { opacity: 1; transform: none; }
   gap: 12px;
 }
 
+.robot-reveal-link {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(143, 188, 255, 0.32);
+  background: rgba(143, 188, 255, 0.12);
+  color: #9ec7ff;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background 220ms ease, color 220ms ease, border-color 220ms ease, transform 220ms ease;
+}
+
+.robot-reveal-link:hover,
+.robot-reveal-link:focus {
+  background: rgba(143, 188, 255, 0.28);
+  border-color: rgba(143, 188, 255, 0.56);
+  color: #0e151e;
+  transform: translateY(-1px);
+}
+
+.robot-reveal-link:focus-visible {
+  outline: 2px solid rgba(143, 188, 255, 0.8);
+  outline-offset: 2px;
+}
+
 .robot-season-label {
   font-size: 0.75rem;
   text-transform: uppercase;
