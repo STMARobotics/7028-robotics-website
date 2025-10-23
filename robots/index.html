@@ -30,6 +30,7 @@
     <div class="video-modal-overlay"></div>
     <div class="video-modal-content">
       <div class="video-modal-header">
+        <h3 class="video-modal-title" id="modalTitle">Robot Reveal Video</h3>
         <button class="video-modal-close" id="closeModal" aria-label="Close video">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <line x1="18" y1="6" x2="6" y2="18"></line>
@@ -64,7 +65,7 @@
             <span class="robot-season">2025</span>
             <span class="robot-name">Torrent</span>
           </h2>
-          <a class="robot-reveal-link notion-pill video-modal-trigger" href="https://www.youtube.com/watch?v=UsBlkkU3mkE" data-video-id="UsBlkkU3mkE">Watch Reveal Video</a>
+          <a class="robot-reveal-link notion-pill video-modal-trigger" href="https://www.youtube.com/watch?v=UsBlkkU3mkE" data-video-id="UsBlkkU3mkE" data-robot-name="Torrent" data-robot-year="2025">Watch Reveal Video</a>
         </div>
       </header>
       <div class="robot-meta">
@@ -178,7 +179,7 @@
             <span class="robot-season">2024</span>
             <span class="robot-name">Tempo</span>
           </h2>
-          <a class="robot-reveal-link notion-pill video-modal-trigger" href="https://www.youtube.com/watch?v=t8niz5vEhlA" data-video-id="t8niz5vEhlA">Watch Reveal Video</a>
+          <a class="robot-reveal-link notion-pill video-modal-trigger" href="https://www.youtube.com/watch?v=t8niz5vEhlA" data-video-id="t8niz5vEhlA" data-robot-name="Tempo" data-robot-year="2024">Watch Reveal Video</a>
         </div>
       </header>
       <div class="robot-meta">
@@ -309,7 +310,7 @@
             <span class="robot-season">2023</span>
             <span class="robot-name">Orion</span>
           </h2>
-          <a class="robot-reveal-link notion-pill video-modal-trigger" href="https://www.youtube.com/watch?v=Ukn3XDbqm00" data-video-id="Ukn3XDbqm00">Watch Reveal Video</a>
+          <a class="robot-reveal-link notion-pill video-modal-trigger" href="https://www.youtube.com/watch?v=Ukn3XDbqm00" data-video-id="Ukn3XDbqm00" data-robot-name="Orion" data-robot-year="2023">Watch Reveal Video</a>
         </div>
       </header>
       <div class="robot-meta">
@@ -400,7 +401,7 @@
             <span class="robot-season">2022</span>
             <span class="robot-name">Onyx</span>
           </h2>
-          <a class="robot-reveal-link notion-pill video-modal-trigger" href="https://www.youtube.com/watch?v=D0x3lRjx96o" data-video-id="D0x3lRjx96o">Watch Reveal Video</a>
+          <a class="robot-reveal-link notion-pill video-modal-trigger" href="https://www.youtube.com/watch?v=D0x3lRjx96o" data-video-id="D0x3lRjx96o" data-robot-name="Onyx" data-robot-year="2022">Watch Reveal Video</a>
         </div>
       </header>
       <div class="robot-meta">
@@ -541,7 +542,7 @@
             <span class="robot-season">2019</span>
             <span class="robot-name">Ozy-Mōld~iăs Philiăs <span class="robot-nickname">(Ozzy)</span></span>
           </h2>
-          <a class="robot-reveal-link notion-pill video-modal-trigger" href="https://www.youtube.com/watch?v=ZrjeHeW0V8o" data-video-id="ZrjeHeW0V8o">Watch Reveal Video</a>
+          <a class="robot-reveal-link notion-pill video-modal-trigger" href="https://www.youtube.com/watch?v=ZrjeHeW0V8o" data-video-id="ZrjeHeW0V8o" data-robot-name="Ozzy" data-robot-year="2019">Watch Reveal Video</a>
         </div>
       </header>
       <div class="robot-meta">
@@ -958,15 +959,17 @@
       (function() {
         const modal = document.getElementById('videoModal');
         const modalVideo = document.getElementById('modalVideo');
+        const modalTitle = document.getElementById('modalTitle');
         const closeButton = document.getElementById('closeModal');
         const overlay = document.querySelector('.video-modal-overlay');
         const triggers = document.querySelectorAll('.video-modal-trigger');
 
-        if (!modal || !modalVideo || !closeButton) return;
+        if (!modal || !modalVideo || !modalTitle || !closeButton) return;
 
-        function openModal(videoId) {
+        function openModal(videoId, robotName, robotYear) {
           const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
           modalVideo.src = embedUrl;
+          modalTitle.textContent = `${robotYear} ${robotName} — Reveal Video`;
           modal.classList.add('show');
           document.body.style.overflow = 'hidden';
         }
@@ -974,6 +977,7 @@
         function closeModal() {
           modal.classList.remove('show');
           modalVideo.src = '';
+          modalTitle.textContent = 'Robot Reveal Video';
           document.body.style.overflow = '';
         }
 
@@ -982,8 +986,10 @@
           trigger.addEventListener('click', function(e) {
             e.preventDefault();
             const videoId = this.getAttribute('data-video-id');
-            if (videoId) {
-              openModal(videoId);
+            const robotName = this.getAttribute('data-robot-name');
+            const robotYear = this.getAttribute('data-robot-year');
+            if (videoId && robotName && robotYear) {
+              openModal(videoId, robotName, robotYear);
             }
           });
         });
