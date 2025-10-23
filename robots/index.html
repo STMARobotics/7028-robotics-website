@@ -56,7 +56,7 @@
     <section class="notion-card robot-card" id="2025">
       <header class="robot-header">
         <figure class="robot-media">
-          <img class="robot-photo" src="/images/robot-torrent.JPG" alt="Torrent robot" loading="lazy">
+          <img class="robot-photo" src="/images/robot-torrent.JPG" alt="Torrent robot">
         </figure>
         <div class="robot-overview">
           <p class="robot-season-label">REEFSCAPE</p>
@@ -170,7 +170,7 @@
     <section class="notion-card robot-card" id="2024">
       <header class="robot-header">
         <figure class="robot-media">
-          <img class="robot-photo" src="/images/robot-tempo.JPG" alt="Tempo robot" loading="lazy">
+          <img class="robot-photo" src="/images/robot-tempo.JPG" alt="Tempo robot">
         </figure>
         <div class="robot-overview">
           <p class="robot-season-label">CRESCENDO</p>
@@ -301,7 +301,7 @@
     <section class="notion-card robot-card" id="2023">
       <header class="robot-header">
         <figure class="robot-media">
-          <img class="robot-photo" src="/images/robot-orion.JPG" alt="Orion robot" loading="lazy">
+          <img class="robot-photo" src="/images/robot-orion.JPG" alt="Orion robot">
         </figure>
         <div class="robot-overview">
           <p class="robot-season-label">CHARGED UP</p>
@@ -392,7 +392,7 @@
     <section class="notion-card robot-card" id="2022">
       <header class="robot-header">
         <figure class="robot-media">
-          <img class="robot-photo" src="/images/robot-onyx.JPG" alt="Onyx robot" loading="lazy">
+          <img class="robot-photo" src="/images/robot-onyx.JPG" alt="Onyx robot">
         </figure>
         <div class="robot-overview">
           <p class="robot-season-label">RAPID REACT</p>
@@ -483,7 +483,7 @@
     <section class="notion-card robot-card" id="2020">
       <header class="robot-header">
         <figure class="robot-media">
-          <img class="robot-photo" src="/images/robot-wilson.jpg" alt="Wilson robot" loading="lazy">
+          <img class="robot-photo" src="/images/robot-wilson.jpg" alt="Wilson robot">
         </figure>
         <div class="robot-overview">
           <p class="robot-season-label">INFINITE RECHARGE</p>
@@ -533,7 +533,7 @@
     <section class="notion-card robot-card" id="2019">
       <header class="robot-header">
         <figure class="robot-media">
-          <img class="robot-photo" src="/images/robot-ozzy.jpg" alt="Ozy-Mōld~iăs Philiăs (Ozzy) robot" loading="lazy">
+          <img class="robot-photo" src="/images/robot-ozzy.jpg" alt="Ozy-Mōld~iăs Philiăs (Ozzy) robot">
         </figure>
         <div class="robot-overview">
           <p class="robot-season-label">DESTINATION: DEEP SPACE</p>
@@ -625,7 +625,7 @@
     <section class="notion-card robot-card" id="2018">
       <header class="robot-header">
         <figure class="robot-media">
-          <img class="robot-photo" src="/images/robot-phyllis.JPG" alt="Phylis robot" loading="lazy">
+          <img class="robot-photo" src="/images/robot-phyllis.JPG" alt="Phylis robot">
         </figure>
         <div class="robot-overview">
           <p class="robot-season-label">POWER UP</p>
@@ -694,29 +694,42 @@
   <div data-include="/partials/footer.html"></div>
 
     <script>
-      // Reveal robot cards and inner event blocks as they scroll into view.
+      // Scroll-triggered animations for robot cards and event blocks
       (function(){
         if (!('IntersectionObserver' in window)) {
-          document.documentElement.classList.add('no-js');
+          // Fallback: make everything visible if no IntersectionObserver support
+          document.querySelectorAll('.robot-card, .event-block').forEach(el => {
+            el.classList.add('is-visible');
+          });
           return;
         }
 
-        const cardObserver = new IntersectionObserver((entries) => {
+        const observer = new IntersectionObserver((entries) => {
           entries.forEach(entry => {
             if (entry.isIntersecting) {
-              const card = entry.target;
-              card.classList.add('is-visible');
-              // Stagger reveal of child event-blocks for a cohesive animation
-              const children = Array.from(card.querySelectorAll('.event-block'));
-              children.forEach((child, idx) => {
-                setTimeout(() => child.classList.add('is-visible'), 120 + idx * 100);
-              });
-              cardObserver.unobserve(card);
+              entry.target.classList.add('is-visible');
+              
+              // For robot cards, also animate their child event blocks with a slight delay
+              if (entry.target.classList.contains('robot-card')) {
+                const eventBlocks = entry.target.querySelectorAll('.event-block');
+                eventBlocks.forEach((block, index) => {
+                  setTimeout(() => {
+                    block.classList.add('is-visible');
+                  }, index * 100);
+                });
+              }
+              
+              // Stop observing once animated
+              observer.unobserve(entry.target);
             }
           });
-        }, { threshold: 0.12 });
+        }, { 
+          threshold: 0.1,
+          rootMargin: '0px 0px -50px 0px' // Trigger slightly before element comes into view
+        });
 
-        document.querySelectorAll('.robot-card').forEach(card => cardObserver.observe(card));
+        // Observe robot cards only (event blocks will be handled by their parent cards)
+        document.querySelectorAll('.robot-card').forEach(card => observer.observe(card));
       })();
 
       // Responsive transform: convert .match-table into accordion on small viewports
@@ -842,20 +855,17 @@
 
         if (!yearNav || yearLinks.length === 0 || robotSections.length === 0) return;
 
-        // Simple debounce function for scroll events
-        function debounce(fn, t){ let id; return (...a)=>{ clearTimeout(id); id = setTimeout(()=>fn(...a), t); }; }
+        // Track navigation state
+        let isClickNavigation = false;
+        let hasInitialHashNavigated = false;
+        const initialHash = window.location.hash;
 
-        // Flag to prevent scroll updates during click navigation
-        let isNavigating = false;
-        let navigationTimeout = null;
-
-        // Detect if device supports touch
-        const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+        // Enable smooth scrolling after initial load (only if no hash)
+        if (!initialHash) {
+          document.documentElement.classList.add('smooth-scroll');
+        }
 
         function updateActiveYear() {
-          // Skip updates if user is currently navigating via click
-          if (isNavigating) return;
-          
           const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
           const windowHeight = window.innerHeight;
           
@@ -872,8 +882,7 @@
             }
           });
 
-          // Update active link and address bar
-          let newActiveSection = null;
+          // Update active link
           yearLinks.forEach(link => {
             link.classList.remove('active');
             if (currentSection) {
@@ -881,98 +890,65 @@
               const linkHref = link.getAttribute('href').substring(1); // remove #
               if (sectionId === linkHref) {
                 link.classList.add('active');
-                newActiveSection = sectionId;
               }
             }
           });
 
-          // Update address bar if active section changed
-          if (newActiveSection) {
-            const currentHash = window.location.hash.substring(1); // remove #
-            if (currentHash !== newActiveSection) {
-              history.replaceState(null, null, '#' + newActiveSection);
+          // Update URL hash only during manual scrolling (not click navigation)
+          if (!isClickNavigation && hasInitialHashNavigated && currentSection) {
+            const sectionId = currentSection.getAttribute('id');
+            const currentHash = window.location.hash.substring(1);
+            if (currentHash !== sectionId) {
+              history.replaceState(null, null, '#' + sectionId);
             }
           }
         }
 
-        // Smooth scrolling for navigation links
+        // Handle click navigation
         yearLinks.forEach(link => {
-          // Add both click and touchstart for better touch device support
-          const handleNavigation = function(e) {
-            e.preventDefault();
-            e.stopPropagation();
+          link.addEventListener('click', function(e) {
+            // Enable smooth scrolling for click navigation
+            document.documentElement.classList.add('smooth-scroll');
             
-            const targetId = this.getAttribute('href').substring(1);
-            const targetElement = document.getElementById(targetId);
+            // Set flag to prevent URL updates during click navigation
+            isClickNavigation = true;
             
-            if (targetElement) {
-              // Set navigation flag and manually update active state
-              isNavigating = true;
-              
-              // Clear any existing timeouts
-              if (navigationTimeout) {
-                clearTimeout(navigationTimeout);
-                navigationTimeout = null;
-              }
-              
-              // Manually set the clicked link as active
-              yearLinks.forEach(l => l.classList.remove('active'));
-              this.classList.add('active');
-              
-              const offset = 100; // Offset from top
-              const targetTop = targetElement.offsetTop - offset;
-              
-              // Update the URL hash
-              history.pushState(null, null, '#' + targetId);
-              
-              window.scrollTo({
-                top: targetTop,
-                behavior: 'smooth'
-              });
-              
-              // Re-enable scroll updates after smooth scroll completes
-              // Use longer timeout for touch devices due to momentum scrolling
-              const timeout = 800;
-              navigationTimeout = setTimeout(() => {
-                isNavigating = false;
-                updateActiveYear(); // Update based on final scroll position
-                navigationTimeout = null;
-              }, timeout);
-            }
-          };
+            // Update active state immediately for responsive feel
+            yearLinks.forEach(l => l.classList.remove('active'));
+            this.classList.add('active');
+          });
+        });
+
+        // Detect when smooth scrolling ends using scroll event
+        let scrollTimeout;
+        window.addEventListener('scroll', function() {
+          // Clear existing timeout
+          clearTimeout(scrollTimeout);
           
-          // Use touchstart for touch devices for more responsive feel
-          if (isTouchDevice) {
-            link.addEventListener('touchstart', handleNavigation, { passive: false });
-          } else {
-            link.addEventListener('click', handleNavigation);
+          // Update active state immediately
+          updateActiveYear();
+          
+          // Detect scroll end and reset click navigation flag
+          if (isClickNavigation) {
+            scrollTimeout = setTimeout(() => {
+              isClickNavigation = false;
+            }, 150); // Short timeout to detect scroll end
           }
         });
 
-        // Update active state on scroll
-        const throttledUpdate = debounce(updateActiveYear, 100);
-        window.addEventListener('scroll', throttledUpdate);
-        
-        // Add scroll end detection for better touch device support
-        let scrollEndTimeout;
-        const handleScrollEnd = () => {
-          // If we're navigating via click, reset the flag when scrolling actually ends
-          if (isNavigating) {
-            clearTimeout(scrollEndTimeout);
-            scrollEndTimeout = setTimeout(() => {
-              if (isNavigating) {
-                isNavigating = false;
-                updateActiveYear();
-                if (navigationTimeout) {
-                  clearTimeout(navigationTimeout);
-                  navigationTimeout = null;
-                }
-              }
-            }, 150);
+        // Handle initial hash navigation
+        window.addEventListener('load', function() {
+          if (initialHash) {
+            // Wait for initial navigation to complete
+            requestAnimationFrame(() => {
+              hasInitialHashNavigated = true;
+              // Enable smooth scrolling after initial hash navigation
+              document.documentElement.classList.add('smooth-scroll');
+            });
+          } else {
+            hasInitialHashNavigated = true;
           }
-        };
-        
-        window.addEventListener('scroll', handleScrollEnd);
+        });
         
         // Initial update
         updateActiveYear();

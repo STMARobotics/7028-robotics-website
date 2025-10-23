@@ -14,6 +14,11 @@ html, body {
   overflow-x: auto;
 }
 
+/* Smooth scrolling only when enabled via class */
+html.smooth-scroll {
+  scroll-behavior: smooth;
+}
+
 /* Register local Allstar display font used for headings */
 @font-face {
   font-family: 'Allstar';
@@ -645,24 +650,24 @@ body.notion .notion-container {
   margin-top: 32px;
 }
 
-/* Animations for robots page */
+/* Animations for robots page - subtle scroll reveal */
 .robot-card {
   opacity: 0;
-  transform: translateY(18px) scale(0.995);
-  transition: opacity 420ms cubic-bezier(.2,.9,.26,1), transform 420ms cubic-bezier(.2,.9,.26,1);
+  transform: translateY(20px);
+  scroll-margin-top: 80px;
+  transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
 .robot-card.is-visible {
   opacity: 1;
-  transform: translateY(0) scale(1);
+  transform: translateY(0);
 }
 
-
-/* All event-blocks should animate consistently regardless of nesting */
+/* All event-blocks should have subtle reveal animation */
 .event-block {
   opacity: 0;
-  transform: translateY(10px);
-  transition: opacity 380ms ease, transform 380ms ease;
+  transform: translateY(15px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
 .event-block.is-visible {
