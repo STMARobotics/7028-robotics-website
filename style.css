@@ -1029,6 +1029,39 @@ html.no-js .event-grid .event-block { opacity: 1; transform: none; }
   color: #d3d7e0;
 }
 
+.notion-card dt {
+  font-weight: bold;
+  margin-bottom: 4px;
+  margin-top: 12px;
+}
+
+.notion-card dt:first-of-type {
+  margin-top: 0;
+}
+
+.notion-card dd {
+  margin-left: 24px;
+  margin-bottom: 12px;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #d3d7e0;
+}
+
+.presentation-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 14px;
+  border-radius: 999px;
+  background: rgba(143, 188, 255, 0.16);
+  border: 1px solid rgba(143, 188, 255, 0.24);
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #d7e5ff;
+  margin-bottom: 16px;
+}
+
 /* Sponsors grid: two banners side-by-side on wide screens, stacked on small screens */
 .sponsors-card {
   padding: 20px;
@@ -1084,6 +1117,7 @@ html.no-js .event-grid .event-block { opacity: 1; transform: none; }
 .notion-links {
   display: flex;
   flex-wrap: wrap;
+  gap: 8px;
   margin: 10px 0px;
 }
 
