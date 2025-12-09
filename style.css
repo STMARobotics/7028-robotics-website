@@ -19,6 +19,11 @@ html.smooth-scroll {
   scroll-behavior: smooth;
 }
 
+/* Header offset for sections without individual scroll-margin */
+.notion-card[id] {
+  scroll-margin-top: 80px;
+}
+
 /* Register local Allstar display font used for headings */
 @font-face {
   font-family: 'Allstar';
@@ -654,7 +659,7 @@ body.notion .notion-container {
 .robot-card {
   opacity: 0;
   transform: translateY(20px);
-  scroll-margin-top: 80px;
+  scroll-margin-top: 120px; /* Increased from 80px to account for layout differences */
   transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
@@ -1157,8 +1162,8 @@ html.no-js .event-grid .event-block { opacity: 1; transform: none; }
   }
 }
 
-/* Year Navigation */
-.year-nav {
+/* Side Navigation */
+.side-nav {
   position: fixed;
   left: calc(50% - 460px - 100px); /* Position to the left of the main container */
   top: 346px;
@@ -1172,7 +1177,7 @@ html.no-js .event-grid .event-block { opacity: 1; transform: none; }
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-.year-nav-list {
+.side-nav-list {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -1181,7 +1186,7 @@ html.no-js .event-grid .event-block { opacity: 1; transform: none; }
   gap: 8px;
 }
 
-.year-nav-link {
+.side-nav-link {
   display: block;
   padding: 12px 20px;
   color: #f5f5f5;
@@ -1196,13 +1201,22 @@ html.no-js .event-grid .event-block { opacity: 1; transform: none; }
   position: relative;
 }
 
-.year-nav-link:hover {
+.side-nav-link:hover {
   color: #8fbcff;
   border-left-color: #8fbcff;
   background: rgba(143, 188, 255, 0.1);
 }
 
-.year-nav-link.active {
+/* Prevent sticky hover on touch devices */
+@media (hover: none) {
+  .side-nav-link:hover {
+    color: #f5f5f5;
+    border-left-color: transparent;
+    background: transparent;
+  }
+}
+
+.side-nav-link.active {
   color: #8fbcff;
   border-left-color: #8fbcff;
   background: rgba(143, 188, 255, 0.15);
@@ -1210,7 +1224,7 @@ html.no-js .event-grid .event-block { opacity: 1; transform: none; }
 
 /* Hide navigation on smaller screens */
 @media (max-width: 1200px) {
-  .year-nav {
+  .side-nav {
     display: none;
   }
 }

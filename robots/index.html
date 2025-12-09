@@ -7,21 +7,22 @@
   <link rel="stylesheet" href="/style.css">
   <link rel="icon" href="/images/favicon.webp" type="image/webp">
   <script src="/scripts/include.js" defer></script>
+  <script src="/scripts/side-nav.js" defer></script>
   <link rel="canonical" href="https://www.7028robotics.com/robots/">
 </head>
 <body class="notion">
   <div data-include="/partials/header.html"></div>
 
-  <!-- Floating Year Navigation -->
-  <nav class="year-nav" id="yearNav">
-    <ul class="year-nav-list">
-      <li><a href="#2025" class="year-nav-link" data-year="2025">2025</a></li>
-      <li><a href="#2024" class="year-nav-link" data-year="2024">2024</a></li>
-      <li><a href="#2023" class="year-nav-link" data-year="2023">2023</a></li>
-      <li><a href="#2022" class="year-nav-link" data-year="2022">2022</a></li>
-      <li><a href="#2020" class="year-nav-link" data-year="2020">2020</a></li>
-      <li><a href="#2019" class="year-nav-link" data-year="2019">2019</a></li>
-      <li><a href="#2018" class="year-nav-link" data-year="2018">2018</a></li>
+  <!-- Floating Side Navigation -->
+  <nav class="side-nav" id="sideNav">
+    <ul class="side-nav-list">
+      <li><a href="#2025" class="side-nav-link" data-sidenav="2025">2025</a></li>
+      <li><a href="#2024" class="side-nav-link" data-sidenav="2024">2024</a></li>
+      <li><a href="#2023" class="side-nav-link" data-sidenav="2023">2023</a></li>
+      <li><a href="#2022" class="side-nav-link" data-sidenav="2022">2022</a></li>
+      <li><a href="#2020" class="side-nav-link" data-sidenav="2020">2020</a></li>
+      <li><a href="#2019" class="side-nav-link" data-sidenav="2019">2019</a></li>
+      <li><a href="#2018" class="side-nav-link" data-sidenav="2018">2018</a></li>
     </ul>
   </nav>
 
@@ -846,113 +847,6 @@
 
         // simple debounce
         function debounce(fn, t){ let id; return (...a)=>{ clearTimeout(id); id = setTimeout(()=>fn(...a), t); }; }
-      })();
-
-      // Year Navigation Active State Handler
-      (function() {
-        const yearNav = document.getElementById('yearNav');
-        const yearLinks = document.querySelectorAll('.year-nav-link');
-        const robotSections = document.querySelectorAll('.robot-card[id]');
-
-        if (!yearNav || yearLinks.length === 0 || robotSections.length === 0) return;
-
-        // Track navigation state
-        let isClickNavigation = false;
-        let hasInitialHashNavigated = false;
-        const initialHash = window.location.hash;
-
-        // Enable smooth scrolling after initial load (only if no hash)
-        if (!initialHash) {
-          document.documentElement.classList.add('smooth-scroll');
-        }
-
-        function updateActiveYear() {
-          const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-          const windowHeight = window.innerHeight;
-          
-          let currentSection = null;
-          
-          // Find which section is currently in view
-          robotSections.forEach(section => {
-            const rect = section.getBoundingClientRect();
-            const sectionTop = scrollTop + rect.top;
-            
-            // Check if section is in the upper half of the viewport
-            if (sectionTop <= scrollTop + windowHeight * 0.4) {
-              currentSection = section;
-            }
-          });
-
-          // Update active link
-          yearLinks.forEach(link => {
-            link.classList.remove('active');
-            if (currentSection) {
-              const sectionId = currentSection.getAttribute('id');
-              const linkHref = link.getAttribute('href').substring(1); // remove #
-              if (sectionId === linkHref) {
-                link.classList.add('active');
-              }
-            }
-          });
-
-          // Update URL hash only during manual scrolling (not click navigation)
-          if (!isClickNavigation && hasInitialHashNavigated && currentSection) {
-            const sectionId = currentSection.getAttribute('id');
-            const currentHash = window.location.hash.substring(1);
-            if (currentHash !== sectionId) {
-              history.replaceState(null, null, '#' + sectionId);
-            }
-          }
-        }
-
-        // Handle click navigation
-        yearLinks.forEach(link => {
-          link.addEventListener('click', function(e) {
-            // Enable smooth scrolling for click navigation
-            document.documentElement.classList.add('smooth-scroll');
-            
-            // Set flag to prevent URL updates during click navigation
-            isClickNavigation = true;
-            
-            // Update active state immediately for responsive feel
-            yearLinks.forEach(l => l.classList.remove('active'));
-            this.classList.add('active');
-          });
-        });
-
-        // Detect when smooth scrolling ends using scroll event
-        let scrollTimeout;
-        window.addEventListener('scroll', function() {
-          // Clear existing timeout
-          clearTimeout(scrollTimeout);
-          
-          // Update active state immediately
-          updateActiveYear();
-          
-          // Detect scroll end and reset click navigation flag
-          if (isClickNavigation) {
-            scrollTimeout = setTimeout(() => {
-              isClickNavigation = false;
-            }, 150); // Short timeout to detect scroll end
-          }
-        });
-
-        // Handle initial hash navigation
-        window.addEventListener('load', function() {
-          if (initialHash) {
-            // Wait for initial navigation to complete
-            requestAnimationFrame(() => {
-              hasInitialHashNavigated = true;
-              // Enable smooth scrolling after initial hash navigation
-              document.documentElement.classList.add('smooth-scroll');
-            });
-          } else {
-            hasInitialHashNavigated = true;
-          }
-        });
-        
-        // Initial update
-        updateActiveYear();
       })();
 
       // Video Modal Handler
