@@ -1165,7 +1165,7 @@ html.no-js .event-grid .event-block { opacity: 1; transform: none; }
 /* Side Navigation */
 .side-nav {
   position: fixed;
-  left: calc(50% - 460px - 100px); /* Position to the left of the main container */
+  right: calc(50% + 460px + 40px); /* Position to maintain consistent distance from main content */
   top: 346px;
   transform: translateY(-50%);
   z-index: 1000;
@@ -1175,6 +1175,7 @@ html.no-js .event-grid .event-block { opacity: 1; transform: none; }
   padding: 16px 0;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
   transition: opacity 0.3s ease, transform 0.3s ease;
+  white-space: nowrap; /* Prevent text wrapping */
 }
 
 .side-nav-list {
