@@ -703,6 +703,16 @@ html.no-js .event-grid .event-block { opacity: 1; transform: none; }
   margin-bottom: 24px;
 }
 
+.robot-header:not(:has(.robot-media)) {
+  grid-template-columns: 1fr;
+  justify-items: center;
+}
+
+.robot-header:not(:has(.robot-media)) .robot-overview {
+  text-align: center;
+  align-items: center;
+}
+
 .robot-media {
   margin: 0;
   width: min(100%, 360px);
