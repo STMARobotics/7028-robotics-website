@@ -1090,16 +1090,6 @@ html.no-js .event-grid .event-block { opacity: 1; transform: none; }
   justify-items: center;
 }
 
-.sponsor-item {
-  display: block;
-  width: 100%;
-  max-width: 720px;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 12px 28px rgba(0,0,0,0.6);
-  transition: transform 0.18s ease, box-shadow 0.18s ease;
-}
-
 .sponsor-item img {
   display: block;
   width: 100%;
