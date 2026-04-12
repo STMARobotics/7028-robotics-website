@@ -53,6 +53,28 @@
     </div>
   </div>
 
+  <!-- FIRST Impact Script Modal -->
+  <div class="video-modal script-modal" id="impactScriptModal" role="dialog" aria-modal="true" aria-labelledby="impactScriptTitle" aria-hidden="true">
+    <div class="video-modal-overlay"></div>
+    <div class="video-modal-content">
+      <div class="video-modal-header">
+        <h3 class="video-modal-title" id="impactScriptTitle">Award Script</h3>
+        <button class="video-modal-close" id="closeImpactScript" aria-label="Close judges' script">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <div class="video-modal-body script-modal-body" id="awardScriptContent">
+        <p>The FIRST Impact Award is the most prestigious award at FIRST, it honors the team that best represents a model for other teams to emulate and best embodies the purpose and goals of FIRST.</p>
+        <p>The FIRST Impact Award is presented to the team judged to have the most significant measurable impact of its partnerships among its participants and community over a sustained period, not just a single build season. The winner is able to demonstrate progress towards FIRST&rsquo;s mission of transforming our culture. The recipient team will be eligible to interview at the FIRST Championship where it will compete for the FIRST Impact Award against winners from other qualifying events.</p>
+        <p>This team feeds their community in multiple ways, removes barriers and showcases the engineering process in solving needs in their local community. This team could teach the one-oh-one course on living FIRST&rsquo;s mission of transforming our culture with generational and recurring investments in STEM. From their new STEM center, we can&rsquo;t wait to see this team take flight.</p>
+        <p>Congratulations Team 7028!</p>
+      </div>
+    </div>
+  </div>
+
   <main class="notion-container">
     <h1 class="notion-page-title">Robots</h1>
 
@@ -110,7 +132,7 @@
               </tr>
               <tr>
                 <th>Awards</th>
-                <td>Engineering Inspiration Award</td>
+                <td><span class="award-badge-label award-badge-label-with-script"><span>Engineering Inspiration Award</span><button class="impact-script-trigger" type="button" data-award-script="ei2026" aria-label="Read Engineering Inspiration Award script" title="Award Script"><svg class="impact-script-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="/images/icons.svg#icon-script"></use></svg></button></span></td>
               </tr>
             </tbody>
           </table>
@@ -145,7 +167,7 @@
                 <th>Awards</th>
                 <td>
                   <div class="award-stack">
-                    <div class="award-stack-item"><span class="award-badge"><img class="award-badge-icon" src="/images/blue-banner.png" alt="" aria-hidden="true"><span class="award-badge-label"><em>FIRST</em> Impact Award</span></span></div>
+                    <div class="award-stack-item"><span class="award-badge"><img class="award-badge-icon" src="/images/blue-banner.png" alt="" aria-hidden="true"><span class="award-badge-label award-badge-label-with-script"><span><em>FIRST</em> Impact Award</span><button class="impact-script-trigger" type="button" data-award-script="impact2026" aria-label="Read FIRST Impact Award judges' script" title="Award Script"><svg class="impact-script-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="/images/icons.svg#icon-script"></use></svg></button></span></span></div>
                     <div class="award-stack-item"><span class="award-badge"><img class="award-badge-icon" src="/images/blue-banner.png" alt="" aria-hidden="true"><span class="award-badge-label">Regional Winners</span></span></div>
                   </div>
                 </td>
@@ -264,7 +286,7 @@
                 <th>Awards</th>
                 <td>
                   <div class="award-stack">
-                    <div class="award-stack-item">Engineering Inspiration Award</div>
+                    <div class="award-stack-item"><span class="award-badge-label award-badge-label-with-script"><span>Engineering Inspiration Award</span><button class="impact-script-trigger" type="button" data-award-script="ei2024" aria-label="Read Engineering Inspiration Award script" title="Award Script"><svg class="impact-script-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="/images/icons.svg#icon-script"></use></svg></button></span></div>
                     <div class="award-stack-item">Regional Finalists</div>
                   </div>
                 </td>
@@ -361,7 +383,7 @@
               </tr>
               <tr>
                 <th>Awards</th>
-                <td>Autonomous Award</td>
+                <td><span class="award-badge-label award-badge-label-with-script"><span>Autonomous Award</span><button class="impact-script-trigger" type="button" data-award-script="autonomous2023" aria-label="Read Autonomous Award script" title="Award Script"><svg class="impact-script-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="/images/icons.svg#icon-script"></use></svg></button></span></td>
               </tr>
             </tbody>
           </table>
@@ -383,7 +405,7 @@
                 <td>
                   <div class="award-stack">
                     <div class="award-stack-item"><span class="award-badge"><img class="award-badge-icon" src="/images/blue-banner.png" alt="" aria-hidden="true"><span class="award-badge-label">Regional Winners</span></span></div>
-                    <div class="award-stack-item">Team Sustainability Award</div>
+                    <div class="award-stack-item"><span class="award-badge-label award-badge-label-with-script"><span>Team Sustainability Award</span><button class="impact-script-trigger" type="button" data-award-script="sustainability2024" aria-label="Read Team Sustainability Award script" title="Award Script"><svg class="impact-script-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="/images/icons.svg#icon-script"></use></svg></button></span></div>
                   </div>
                 </td>
               </tr>
@@ -500,7 +522,7 @@
               </tr>
               <tr>
                 <th>Awards</th>
-                <td>Innovation in Control Award</td>
+                <td><span class="award-badge-label award-badge-label-with-script"><span>Innovation in Control Award</span><button class="impact-script-trigger" type="button" data-award-script="innovation2023" aria-label="Read Innovation in Control Award script" title="Award Script"><svg class="impact-script-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="/images/icons.svg#icon-script"></use></svg></button></span></td>
               </tr>
             </tbody>
           </table>
@@ -591,7 +613,7 @@
               </tr>
               <tr>
                 <th>Awards</th>
-                <td>Innovation in Control Award</td>
+                <td><span class="award-badge-label award-badge-label-with-script"><span>Innovation in Control Award</span><button class="impact-script-trigger" type="button" data-award-script="innovation2022" aria-label="Read Innovation in Control Award script" title="Award Script"><svg class="impact-script-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="/images/icons.svg#icon-script"></use></svg></button></span></td>
               </tr>
             </tbody>
           </table>
@@ -610,7 +632,12 @@
               </tr>
               <tr>
                 <th>Awards</th>
-                <td>Regional Finalists, Autonomous Award</td>
+                <td>
+                  <div class="award-stack">
+                    <div class="award-stack-item">Regional Finalists</div>
+                    <div class="award-stack-item"><span class="award-badge-label award-badge-label-with-script"><span>Autonomous Award</span><button class="impact-script-trigger" type="button" data-award-script="autonomous2022" aria-label="Read Autonomous Award script" title="Award Script"><svg class="impact-script-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="/images/icons.svg#icon-script"></use></svg></button></span></div>
+                  </div>
+                </td>
               </tr>
             </tbody>
           </table>
@@ -1053,6 +1080,94 @@
         overlay.addEventListener('click', closeModal);
 
         // Close on escape key
+        document.addEventListener('keydown', function(e) {
+          if (e.key === 'Escape' && modal.classList.contains('show')) {
+            closeModal();
+          }
+        });
+      })();
+
+      // FIRST Impact script modal handler
+      (function() {
+        const modal = document.getElementById('impactScriptModal');
+        const modalContent = document.getElementById('awardScriptContent');
+        const closeButton = document.getElementById('closeImpactScript');
+        const overlay = modal ? modal.querySelector('.video-modal-overlay') : null;
+        const triggers = document.querySelectorAll('.impact-script-trigger');
+
+        if (!modal || !modalContent || !closeButton || !overlay || triggers.length === 0) return;
+
+        const scripts = {
+          impact2026: [
+            'The FIRST Impact Award is the most prestigious award at FIRST, it honors the team that best represents a model for other teams to emulate and best embodies the purpose and goals of FIRST.',
+            'The FIRST Impact Award is presented to the team judged to have the most significant measurable impact of its partnerships among its participants and community over a sustained period, not just a single build season. The winner is able to demonstrate progress towards FIRST\'s mission of transforming our culture. The recipient team will be eligible to interview at the FIRST Championship where it will compete for the FIRST Impact Award against winners from other qualifying events.',
+            'This team feeds their community in multiple ways, removes barriers and showcases the engineering process in solving needs in their local community. This team could teach the one-oh-one course on living FIRST\'s mission of transforming our culture with generational and recurring investments in STEM. From their new STEM center, we can\'t wait to see this team take flight.',
+            'Congratulations Team 7028!'
+          ],
+          ei2026: [
+            'The Engineering Inspiration Award sponsored by SpaceX celebrates a team who demonstrates outstanding success in advancing respect and appreciation for engineering within a team\'s school or organization, and community.',
+            'This team of forward thinkers Secured their community\'s future as a place where there is STEM for all Soon all the troops will get their commands in zeros and ones',
+            'Congratulations Team 7028!'
+          ],
+          ei2024: [
+            'The Engineering Inspiration Award celebrates outstanding success in advancing respect and appreciation for engineering within a team\'s school or organization, and community. Inspiring others to respect science and technology requires passion, knowledge and commitment, and we recognize these qualities through this award.',
+            'With a flood of excitement on the way to the Reef, this unit doesn\'t fall flat in inspiring growth in their team and impacting students and sponsors in their community. Their four captains guide the Torrent through a sea of ones and zeros. Congratulations team 7028, Binary Battalion',
+            'Congratulations Team 7028!'
+          ],
+          innovation2023: [
+            'The Innovation in Control Award celebrates an innovative control system or application of control components - electrical, mechanical, or software - to provide unique machine functions.',
+            'This team controls the competition with multiple cameras A button press or two sets the target Their Binary Code found the optimal path!',
+            'Congratulations Team 7028!'
+          ],
+          autonomous2023: [
+            'The Autonomous Award sponsored by Ford celebrates the team that has demonstrated consistent, reliable, high-performance robot operation during autonomously managed actions. Evaluation is based on the robot\'s ability to sense its surroundings, position itself or onboard mechanisms appropriately, and execute tasks.',
+            'This team has their autonomous on lock. Using limelight and sensors to get the game pieces on top The use of sensors doesn\'t end after the first 15 seconds Instead during teleop you\'ll find them using buttons to lead their robot to the right spot.',
+            'Congratulations Team 7028!'
+          ],
+          innovation2022: [
+            'The Innovation in Control Award celebrates an innovative control system or application of control components - electrical, mechanical, or software - to provide unique machine functions.',
+            'This squad came together with a common aim. Using several sensors to onto their target with precision. This award goes to an innovative troop.',
+            'Congratulations Team 7028!'
+          ],
+          autonomous2022: [
+            'The Autonomous Award sponsored by Ford celebrates the team that has demonstrated consistent, reliable, high-performance robot operation during autonomously managed actions. Evaluation is based on the robot\'s ability to sense its surroundings, position itself or onboard mechanisms appropriately, and execute tasks.',
+            'This team demonstrated throughout the regional they are a sharpshooter on the field of play. They were able to showcase this talent during autonomous operations where their robot not only scored many points but also maintained this impressive trend across all of their matches. Congratulations Team 7028, Binary Battalion from Saint Michael, Minnesota.',
+            'Congratulations Team 7028!'
+          ],
+          sustainability2024: [
+            'The Team Sustainability Award sponsored by Dow celebrates and recognizes a team which has developed sustainable practices to have a positive environmental impact and achieve long-term continuity.',
+            'Youth are our future, or so they say, And this team is building in a sustainable way. They march in the digital scene Supporting the future with their FTC and FLL teams In the realm of zeros and ones, they stand tall Binary Battalion is definitely answering sustainbility\'s call.',
+            'Congratulations Team 7028!'
+          ]
+        };
+
+        function setModalScript(scriptKey) {
+          const paragraphs = scripts[scriptKey] || scripts.impact2026;
+          modalContent.innerHTML = paragraphs.map((paragraph) => `<p>${paragraph}</p>`).join('');
+        }
+
+        function openModal(scriptKey) {
+          setModalScript(scriptKey);
+          modal.classList.add('show');
+          modal.setAttribute('aria-hidden', 'false');
+          document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+          modal.classList.remove('show');
+          modal.setAttribute('aria-hidden', 'true');
+          document.body.style.overflow = '';
+        }
+
+        triggers.forEach((trigger) => {
+          trigger.addEventListener('click', function() {
+            openModal(this.getAttribute('data-award-script'));
+          });
+        });
+
+        closeButton.addEventListener('click', closeModal);
+        overlay.addEventListener('click', closeModal);
+
         document.addEventListener('keydown', function(e) {
           if (e.key === 'Escape' && modal.classList.contains('show')) {
             closeModal();
