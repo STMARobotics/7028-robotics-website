@@ -1000,6 +1000,36 @@ html.no-js .event-grid .event-block { opacity: 1; transform: none; }
   margin-top: 0.1rem;
 }
 
+.captain-name-with-award {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.captain-award-marker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.1rem 0.45rem;
+  border: 1px solid rgba(143, 188, 255, 0.45);
+  border-radius: 999px;
+  background: rgba(143, 188, 255, 0.14);
+  color: #b8d2ff;
+  line-height: 1.2;
+}
+
+.captain-award-icon {
+  width: 0.95rem;
+  height: 0.95rem;
+  flex-shrink: 0;
+}
+
+.captain-award-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.015em;
+}
+
 .match-table {
   margin-top: 8px;
 }
