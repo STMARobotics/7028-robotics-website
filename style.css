@@ -1005,6 +1005,18 @@ html.no-js .event-grid .event-block { opacity: 1; transform: none; }
   border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
+@media (max-width: 600px) {
+  .award-badge-label-with-script {
+    flex-wrap: wrap;
+    row-gap: 0.35rem;
+  }
+
+  .award-badge-label-with-script > span:first-child {
+    flex-basis: 100%;
+    min-width: 0;
+  }
+}
+
 .award-badge-icon {
   width: 1.1rem;
   height: 1.1rem;
