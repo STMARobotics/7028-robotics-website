@@ -132,7 +132,16 @@
               </tr>
               <tr>
                 <th>Awards</th>
-                <td><span class="award-badge-label award-badge-label-with-script"><span>Engineering Inspiration Award</span><button class="impact-script-trigger" type="button" data-award-script="ei2026" aria-label="Read Engineering Inspiration Award script" title="Award Script"><svg class="impact-script-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="/images/icons.svg#icon-script"></use></svg></button></span></td>
+                <td>
+                  <span class="award-badge-label award-badge-label-with-script">
+                    <span>Engineering Inspiration Award</span>
+                    <button class="impact-script-trigger" type="button" data-award-script="ei2026" aria-label="Read Engineering Inspiration Award script" title="Award Script">
+                      <svg class="impact-script-icon" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="/images/icons.svg#icon-script"></use>
+                      </svg>
+                    </button>
+                  </span>
+                </td>
               </tr>
             </tbody>
           </table>
@@ -147,7 +156,9 @@
           <h2 class="robot-title">
             <span class="robot-name">PHALANX</span>
           </h2>
-          <a class="robot-reveal-link notion-pill video-modal-trigger" href="https://www.youtube.com/watch?v=iBvlMajY0Fw" data-video-id="iBvlMajY0Fw" data-robot-name="Phalanx" data-robot-year="2026">Watch Reveal Video</a>
+          <a class="robot-reveal-link notion-pill video-modal-trigger" href="https://www.youtube.com/watch?v=iBvlMajY0Fw" data-video-id="iBvlMajY0Fw" data-robot-name="Phalanx" data-robot-year="2026">
+            Watch Reveal Video
+          </a>
         </div>
       </header>
       <div class="event-grid">
@@ -167,8 +178,35 @@
                 <th>Awards</th>
                 <td>
                   <div class="award-stack">
-                    <div class="award-stack-item"><span class="award-badge"><img class="award-badge-icon" src="/images/blue-banner.png" alt="" aria-hidden="true"><span class="award-badge-label award-badge-label-with-script"><span><em>FIRST</em> Impact Award</span><button class="impact-script-trigger" type="button" data-award-script="impact2026" aria-label="Read FIRST Impact Award judges' script" title="Award Script"><svg class="impact-script-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="/images/icons.svg#icon-script"></use></svg></button></span></span></div>
-                    <div class="award-stack-item"><span class="award-badge"><img class="award-badge-icon" src="/images/blue-banner.png" alt="" aria-hidden="true"><span class="award-badge-label">Regional Winners</span></span></div>
+                    <div class="award-stack-item">
+                      <span class="award-badge">
+                        <img class="award-badge-icon" src="/images/blue-banner.png" alt="" aria-hidden="true">
+                        <span class="award-badge-label award-badge-label-with-script">
+                          <span><em>FIRST</em> Impact Award</span>
+                          <button class="award-inline-trigger impact-script-trigger" type="button" data-award-script="impact2026" aria-label="Read FIRST Impact Award judges' script" title="Award Script">
+                            <svg class="impact-script-icon" viewBox="0 0 24 24" aria-hidden="true">
+                              <use href="/images/icons.svg#icon-script"></use>
+                            </svg>
+                          </button>
+                          <a class="award-inline-trigger video-modal-trigger" href="https://youtu.be/tjj_HgpPbV0" data-video-id="tjj_HgpPbV0" data-robot-name="FIRST Impact Award" data-robot-year="2026" data-video-title="2026 FIRST Impact Award" aria-label="Watch the 2026 FIRST Impact Award video" title="FIRST Impact Video">
+                            <svg class="impact-script-icon" viewBox="0 0 24 24" aria-hidden="true">
+                              <use href="/images/icons.svg#icon-youtube"></use>
+                            </svg>
+                          </a>
+                          <a class="award-inline-trigger" href="https://info.firstinspires.org/hubfs/web/program/frc/awards/fia-essays/2026/7028.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open the 2026 FIRST Impact Award Essay" title="FIRST Impact Essay">
+                            <svg class="impact-script-icon" viewBox="0 0 24 24" aria-hidden="true">
+                              <use href="/images/icons.svg#icon-document"></use>
+                            </svg>
+                          </a>
+                        </span>
+                      </span>
+                    </div>
+                    <div class="award-stack-item">
+                      <span class="award-badge">
+                        <img class="award-badge-icon" src="/images/blue-banner.png" alt="" aria-hidden="true">
+                        <span class="award-badge-label">Regional Winners</span>
+                      </span>
+                    </div>
                   </div>
                 </td>
               </tr>
@@ -1054,10 +1092,10 @@
 
         if (!modal || !modalVideo || !modalTitle || !closeButton) return;
 
-        function openModal(videoId, robotName, robotYear) {
+        function openModal(videoId, robotName, robotYear, videoTitle) {
           const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
           modalVideo.src = embedUrl;
-          modalTitle.textContent = `${robotYear} ${robotName} — Reveal Video`;
+          modalTitle.textContent = videoTitle || `${robotYear} ${robotName} — Reveal Video`;
           modal.classList.add('show');
           document.body.style.overflow = 'hidden';
         }
@@ -1065,7 +1103,7 @@
         function closeModal() {
           modal.classList.remove('show');
           modalVideo.src = '';
-          modalTitle.textContent = 'Robot Reveal Video';
+          modalTitle.textContent = 'Video';
           document.body.style.overflow = '';
         }
 
@@ -1076,8 +1114,9 @@
             const videoId = this.getAttribute('data-video-id');
             const robotName = this.getAttribute('data-robot-name');
             const robotYear = this.getAttribute('data-robot-year');
+            const videoTitle = this.getAttribute('data-video-title');
             if (videoId && robotName && robotYear) {
-              openModal(videoId, robotName, robotYear);
+              openModal(videoId, robotName, robotYear, videoTitle);
             }
           });
         });

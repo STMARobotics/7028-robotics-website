@@ -950,6 +950,7 @@ html.no-js .event-grid .event-block { opacity: 1; transform: none; }
   gap: 0.5rem;
 }
 
+.award-inline-trigger,
 .impact-script-trigger {
   width: 1.35rem;
   height: 1.35rem;
@@ -966,11 +967,21 @@ html.no-js .event-grid .event-block { opacity: 1; transform: none; }
   transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
 }
 
+.award-badge-label-with-script .award-inline-trigger,
+.award-badge-label-with-script .award-inline-trigger:hover,
+.award-badge-label-with-script .impact-script-trigger,
+.award-badge-label-with-script .impact-script-trigger:hover {
+  color: #b8d2ff;
+  text-decoration: none;
+}
+
 .impact-script-icon {
   width: 100%;
   height: 100%;
 }
 
+.award-inline-trigger:hover,
+.award-inline-trigger:focus,
 .impact-script-trigger:hover,
 .impact-script-trigger:focus {
   transform: translateY(-1px);
@@ -978,6 +989,7 @@ html.no-js .event-grid .event-block { opacity: 1; transform: none; }
   border-color: rgba(143, 188, 255, 0.62);
 }
 
+.award-inline-trigger:focus-visible,
 .impact-script-trigger:focus-visible {
   outline: 2px solid rgba(143, 188, 255, 0.85);
   outline-offset: 2px;
