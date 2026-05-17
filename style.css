@@ -1024,6 +1024,14 @@ html.no-js .event-grid .event-block { opacity: 1; transform: none; }
   margin-top: 0.1rem;
 }
 
+.award-place-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  line-height: 1;
+}
+
 .captain-name-with-award {
   display: inline-flex;
   align-items: center;
