@@ -7,7 +7,9 @@ This site is served using GitHub pages.
 To contribute:
 - Fork the repo into your GitHub account.
 - Clone the repo to your computer.
-- Run the command `python3 -m http.server 8000` and open the site at http://localhost:8000
+- Preview the site
+  - If you're using VS Code, install the Live Preview extension -or-
+  - Run the command `python3 -m http.server 8000` and open the site at http://localhost:8000
 - Make your edits and test them locally.
 - Commit your changes and push them to your fork.
 - Open a Pull Request to the `main` branch.
